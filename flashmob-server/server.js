@@ -14,14 +14,14 @@ app.use(bodyParser.json());
 
 // --- Configure Gemini API ---
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+// console.log(GEMINI_API_KEY)
 
 if (!GEMINI_API_KEY) {
   console.error(
     "FATAL ERROR: GEMINI_API_KEY not found in environment variables."
   );
-  
-}
 
+}
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
 const generationConfig = {
