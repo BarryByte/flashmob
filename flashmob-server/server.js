@@ -18,11 +18,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const PORT = process.env.PORT || 5000;
 
-// app.options("*", cors()); // Handle preflight requests
+// app.options("*", cors());
 app.use(cors({
-  origin: ['https://flashmob-five.vercel.app', 'http://localhost:3000'], // Your Vercel URL and local dev URL
-  methods: ['POST', 'GET', 'OPTIONS'], // Include OPTIONS explicitly if needed, though cors usually handles it
-  allowedHeaders: ['Content-Type', 'Authorization'], // Add 'Authorization' or any other custom headers you might send
+  origin: ['https://flashmob-five.vercel.app', 'http://localhost:3000'],
+  methods: ['POST', 'GET', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'], 
   credentials: true
 }));
 
