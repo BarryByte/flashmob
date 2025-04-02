@@ -1,20 +1,28 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const { GoogleGenerativeAI } = require("@google/generative-ai");
-require("dotenv").config();
-const v8 = require("v8");
+import express from "express";
+import bodyParser from "body-parser";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import dotenv from "dotenv";
+import v8 from "v8";
+import path, { dirname } from "path";
+import { fileURLToPath } from 'url';
+
+dotenv.config();
+
 const totalHeapSize = v8.getHeapStatistics().total_available_size;
 const totalHeapSizeMB = (totalHeapSize / 1024 / 1024).toFixed(2);
 console.log(`Total Heap Size: ${totalHeapSizeMB} MB`);
 
 const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "flashmob-app", "dist")));
 
 // --- Configure Gemini API ---
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-// console.log(GEMINI_API_KEY)
 
 if (!GEMINI_API_KEY) {
   console.error(

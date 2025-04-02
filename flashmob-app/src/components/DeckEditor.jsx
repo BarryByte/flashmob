@@ -386,7 +386,7 @@ const DeckEditor = () => {
         throw new Error("Please enter text to generate questions from");
       }
 
-      const response = await fetch("/generate_questions", {
+      const response = await fetch(`${window.location.origin}/generate_questions`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -847,7 +847,7 @@ const DeckEditor = () => {
             </div>
           )}
 
-         
+
          {!isOwner && <div className="hidden md:block"></div>}
 
         </div> {/* End Grid */}
