@@ -4,6 +4,13 @@
 
 **FlashMob** is a collaborative flashcard application designed to enhance study sessions by allowing users to create, share, and review flashcards seamlessly. It leverages **AI-powered question generation** to help users save time and focus on learning rather than manually creating flashcards, well you can create them manually too. The app is built using **React** for the frontend and **Express.js** for the backend, with real-time collaboration features powered by **Firebase**.
 
+
+## Deployed Link : [FlashMob on Vercel](https://flashmob-five.vercel.app/)
+> credentials below 
+
+## Loom Demo : [Watch Demo](https://www.loom.com/share/85a04bbb31b94bd89b7b494d7597a509?sid=f4693823-1598-45c2-86cf-1d7391c059d8)
+
+
 ## 🎯 Key Features
 
 ### 🔹 Collaborative Flashcard Creation
