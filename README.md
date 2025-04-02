@@ -109,6 +109,17 @@ POST /api/generate-questions
 }
 ```
 
+## Credentials (for now)
+
+> email_1 : abhay@gmail.com
+> 
+> pass_1 : abhay@1234567890
+> 
+> email_2 : daksh@gmail.com
+> 
+> pass_2 : daksh@1234567890
+
+
 
 ## 📄 License
 This project is licensed under the **MIT License**.
