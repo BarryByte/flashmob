@@ -10,5 +10,12 @@
   ],
   "routes": [
     { "src": "/(.*)", "dest": "flashmob-app/dist/$1" }
+  ],
+  
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }
