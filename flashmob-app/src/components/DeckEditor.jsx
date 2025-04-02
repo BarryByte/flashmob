@@ -386,7 +386,7 @@ const DeckEditor = () => {
         throw new Error("Please enter text to generate questions from");
       }
 
-      const response = await fetch(`${window.location.origin}/generate_questions`, {
+      const response = await fetch(`https://flashmob-4gj7.onrender.com/generate_questions`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
