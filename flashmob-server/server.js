@@ -18,11 +18,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const PORT = process.env.PORT || 5000;
 
-app.options("*", cors()); // Handle preflight requests
+// app.options("*", cors()); // Handle preflight requests
 app.use(cors({
-  origin: ['https://flashmob-five.vercel.app', 'http://localhost:3000'],
-  methods: ['POST', 'GET'],
-  allowedHeaders: ['Content-Type'],
+  origin: ['https://flashmob-five.vercel.app', 'http://localhost:3000'], // Your Vercel URL and local dev URL
+  methods: ['POST', 'GET', 'OPTIONS'], // Include OPTIONS explicitly if needed, though cors usually handles it
+  allowedHeaders: ['Content-Type', 'Authorization'], // Add 'Authorization' or any other custom headers you might send
   credentials: true
 }));
 
@@ -181,4 +181,7 @@ app.post("/generate_questions", async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
+  if (process.env.NODE_ENV !== 'production') {
+      console.log(`Allowing requests from: ['https://flashmob-five.vercel.app', 'http://localhost:3000']`);
+  }
 });
