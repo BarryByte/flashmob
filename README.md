@@ -25,7 +25,7 @@
   - **Input:** "Einstein's theory of relativity, encompassing special and general relativity, essentially states that space and time are relative and not absolute, and gravity is a curvature of spacetime caused by mass and energy. "
   ![Screenshot from 2025-04-02 13-12-40](https://github.com/user-attachments/assets/9be81005-3943-4070-a081-2cfea22f6d97)
 
-  - **Output:** "What does the Earth revolve around?" → "The Sun."
+  - **Output:** 
   ![Screenshot from 2025-04-02 13-13-31](https://github.com/user-attachments/assets/e6b90b72-f3db-4889-ad1b-44bd7c6d7125)
 
 
@@ -122,9 +122,9 @@ POST /api/generate-questions
 > 
 > pass_1 : abhay@1234567890
 > 
-> email_2 : daksh@gmail.com
+> email_2 : brook@gmail.com
 > 
-> pass_2 : daksh@1234567890
+> pass_2 : brook@1234567890
 
 
 
