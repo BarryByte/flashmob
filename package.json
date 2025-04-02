@@ -6,7 +6,7 @@
   "scripts": {
   "build": "npm install && npm install --prefix flashmob-app && npm install -g vite && npm run build --prefix flashmob-app",
   "dev": "concurrently \"npm run dev --prefix flashmob-server\" \"npm run dev --prefix flashmob-app\"",
-  "build-frontend": "vite build --prefix flashmob-app"
+  "start" : "npm run start --prefix flashmob-server"
 }
   ,
   "devDependencies": {
