@@ -8,7 +8,7 @@ const totalHeapSizeMB = (totalHeapSize / 1024 / 1024).toFixed(2);
 console.log(`Total Heap Size: ${totalHeapSizeMB} MB`);
 
 const app = express();
-const port = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 
@@ -20,7 +20,6 @@ if (!GEMINI_API_KEY) {
   console.error(
     "FATAL ERROR: GEMINI_API_KEY not found in environment variables."
   );
-
 }
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
@@ -46,7 +45,6 @@ const safetySettings = [
     threshold: "BLOCK_MEDIUM_AND_ABOVE",
   },
 ];
-
 
 async function parseGeminiResponse(textResponse) {
   console.log(
@@ -103,11 +101,9 @@ app.post("/generate_questions", async (req, res) => {
   }
   // Limit input text size
   if (text.length > 10000) {
-    return res
-      .status(400)
-      .json({
-        error: "Input text is too large. Please limit to 10,000 characters.",
-      });
+    return res.status(400).json({
+      error: "Input text is too large. Please limit to 10,000 characters.",
+    });
   }
   const prompt = `Generate exactly ${num_questions} distinct flashcard question-and-answer pairs based on the following text.
     **Instructions:**
@@ -148,12 +144,10 @@ app.post("/generate_questions", async (req, res) => {
       console.warn(
         "Warning: Parsing returned no cards, despite successful generation."
       );
-      return res
-        .status(500)
-        .json({
-          error:
-            "Could not parse Q&A pairs from the generated text. The AI might not have followed the format. Please try again or adjust the input text.",
-        });
+      return res.status(500).json({
+        error:
+          "Could not parse Q&A pairs from the generated text. The AI might not have followed the format. Please try again or adjust the input text.",
+      });
     }
 
     res.json({ generated_cards: formattedCards });
@@ -162,14 +156,12 @@ app.post("/generate_questions", async (req, res) => {
       "An error occurred during Gemini API call or processing:",
       error
     );
-    res
-      .status(500)
-      .json({
-        error: "An unexpected error occurred while generating questions.",
-      });
+    res.status(500).json({
+      error: "An unexpected error occurred while generating questions.",
+    });
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server listening at http://localhost:${PORT}`);
 });
