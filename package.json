@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-  "build": "npm install && npm install --prefix flashmob-app && npm install -g vite && npm run build --prefix flashmob-app",
+  "build": "npm install && npm install --prefix flashmob-app && npm install --prefix flashmob-server && npm install -g vite && npm run build --prefix flashmob-app",
   "dev": "concurrently \"npm run dev --prefix flashmob-server\" \"npm run dev --prefix flashmob-app\"",
   "start" : "npm run start --prefix flashmob-server"
 }
