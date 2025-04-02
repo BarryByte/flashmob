@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import v8 from "v8";
 import path, { dirname } from "path";
 import { fileURLToPath } from 'url';
+import cors from "cors"
 
 dotenv.config();
 
@@ -16,6 +17,12 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const PORT = process.env.PORT || 5000;
+
+app.use(cors({
+  origin: 'https://flashmob-five.vercel.app' || 'http://localhost:3000',
+  methods: ['POST', 'GET'],
+  allowedHeaders: ['Content-Type'],
+}));
 
 app.use(bodyParser.json());
 app.use(express.json());
