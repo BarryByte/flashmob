@@ -1,21 +1,19 @@
-
-
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../firebase"; // Import db
-import { doc, setDoc, serverTimestamp } from "firebase/firestore"; // Import Firestore functions
-import { useNavigate } from "react-router-dom"; // Import for redirection
+import { auth, db } from "../firebase";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
-    e.preventDefault(); // Prevent default form submission
-    setError(""); // Clear previous errors
+    e.preventDefault();
+    setError(""); 
     setLoading(true);
 
     if (!email || !password) {
@@ -35,19 +33,19 @@ const Signup = () => {
           const userDocRef = doc(db, "users", user.uid);
           await setDoc(userDocRef, {
             email: user.email,
-            createdAt: serverTimestamp() // Optional: track when user joined
-            // Add any other initial user profile data here if needed
+            createdAt: serverTimestamp()
+
           });
           console.log("User document created in Firestore for:", user.uid);
       } catch (firestoreError) {
           console.error("Error creating user document in Firestore:", firestoreError);
-          // Decide how to handle this - maybe alert the user, but signup itself was successful
+          // Handle Firestore error but allow login to proceed
           setError("Signup successful, but failed to create user profile data. Please try logging in or contact support.");
           // Don't block login if only Firestore write failed, user exists in Auth
       }
 
       setLoading(false);
-      navigate("/dashboard"); // Redirect to dashboard (or DeckList) after successful signup & profile creation
+      navigate("/"); // Redirect to Deck list successful signup
 
     } catch (authError) {
       setLoading(false);
@@ -100,7 +98,7 @@ const Signup = () => {
                  </div>
                 <div>
                     <button
-                        type="submit" // Use type="submit" for forms
+                        type="submit"
                         className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
                         disabled={loading}
                     >

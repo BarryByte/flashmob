@@ -10,7 +10,7 @@ const StudyMode = () => {
   const [showAnswer, setShowAnswer] = useState(false);
   const [score, setScore] = useState(0);
   const [answeredCards, setAnsweredCards] = useState([]);
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -56,6 +56,15 @@ const StudyMode = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-400 to-blue-500 p-6">
         <p className="text-white text-xl font-semibold">Loading...</p>
+      </div>
+    );
+  }
+
+  // if no cards are found
+  if (cards.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-400 to-blue-500 p-6">
+        <p className="text-white text-xl font-semibold">No cards found in this deck.</p>
       </div>
     );
   }

@@ -1,19 +1,18 @@
-
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom"; // Import for redirection
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent default form submission
-    setError(""); // Clear previous errors
+    e.preventDefault();
+    setError("");
     setLoading(true);
 
      if (!email || !password) {
@@ -26,14 +25,15 @@ const Login = () => {
       await signInWithEmailAndPassword(auth, email, password);
       setLoading(false);
       console.log("Login successful");
-      navigate("/dashboard"); // Redirect to dashboard (or DeckList) after successful login
+      navigate("/");
+
     } catch (err) {
       setLoading(false);
       let errorMessage = "Login failed. Please check your credentials.";
-      // Use modern error codes if available (check Firebase docs for latest)
+      // TODO : Need latest Firebase Auth error codes
       if (err.code === "auth/user-not-found" || err.code === "auth/invalid-credential" || err.code === "auth/invalid-email") {
         errorMessage = "Invalid email or password. Please try again.";
-      } else if (err.code === "auth/wrong-password") { // May be deprecated, covered by invalid-credential
+      } else if (err.code === "auth/wrong-password") {
         errorMessage = "Incorrect password. Please try again.";
       } else if (err.code === 'auth/too-many-requests') {
         errorMessage = "Too many login attempts. Please try again later.";
@@ -77,12 +77,6 @@ const Login = () => {
                         className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                  </div>
-                 {/* Add Forgot Password link if needed */}
-                 {/* <div className="text-sm text-right">
-                    <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-                        Forgot your password?
-                    </a>
-                 </div> */}
                   <div>
                     <button
                         type="submit"
