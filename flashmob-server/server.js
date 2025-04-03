@@ -11,7 +11,7 @@ dotenv.config();
 
 const totalHeapSize = v8.getHeapStatistics().total_available_size;
 const totalHeapSizeMB = (totalHeapSize / 1024 / 1024).toFixed(2);
-console.log(`Total Heap Size: ${totalHeapSizeMB} MB`);
+console.log(`Total Heap Size: ${totalHeapSizeMB} MB`); 
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -20,9 +20,9 @@ const PORT = process.env.PORT || 5000;
 
 // app.options("*", cors());
 app.use(cors({
-  origin: ['https://flashmob-five.vercel.app', 'http://localhost:3000'],
+  origin: ['https://flashmob-five.vercel.app', 'http://localhost:3000', 'http://localhost:5173'],
   methods: ['POST', 'GET', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'], 
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 
@@ -182,6 +182,6 @@ app.post("/generate_questions", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
   if (process.env.NODE_ENV !== 'production') {
-      console.log(`Allowing requests from: ['https://flashmob-five.vercel.app', 'http://localhost:3000']`);
+      console.log(`Allowing requests from: ['https://flashmob-five.vercel.app', 'http://localhost:3000', 'http://localhost:5173']`);
   }
 });
